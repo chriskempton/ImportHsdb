@@ -57,6 +57,8 @@ public class DataLoader {
                 System.out.println("Substance #"+i);
                 System.out.println("Name="+substance.getName());
 
+                // TODO Annotate model classes to refer to Cassandra column names
+                // TODO Refactor data loading code below to use the Entity persister
                 MutationBatch m = keyspace.prepareMutationBatch();
 
                 m.withRow(CF_SUBSTANCES, k)
@@ -64,6 +66,7 @@ public class DataLoader {
                         .putColumn("meltingpoint", substance.getMeltingPoint(), null)
                         .putColumn("boilingpoint", substance.getBoilingPoint(), null)
                         .putColumn("molecularformula", substance.getMolecularFormula(), null);
+                //TODO Add synonyms and major uses data as sets within a substance entity
 
                 try {
                     OperationResult<Void> result = m.execute();
