@@ -1,4 +1,4 @@
-package org.kemptonfarms.substances.app;
+package org.kemptonfarms.substances.util;
 
 import com.netflix.astyanax.AstyanaxContext;
 import com.netflix.astyanax.Keyspace;
@@ -9,10 +9,10 @@ import com.netflix.astyanax.connectionpool.NodeDiscoveryType;
 
 import com.netflix.astyanax.thrift.ThriftFamilyFactory;
 
-public class CassandraConnectionUtil {
+public class CassandraConnection {
       public static AstyanaxContext createConnection() {
           AstyanaxContext<Keyspace> context = new AstyanaxContext.Builder()
-                  .forKeyspace("hsdbKeyspace")
+                  .forKeyspace("hazards")
                   .withAstyanaxConfiguration(new AstyanaxConfigurationImpl()
                           .setDiscoveryType(NodeDiscoveryType.RING_DESCRIBE)
                           .setCqlVersion("3.0.0")
