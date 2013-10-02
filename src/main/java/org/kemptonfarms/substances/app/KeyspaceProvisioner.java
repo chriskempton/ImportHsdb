@@ -16,8 +16,7 @@ public class KeyspaceProvisioner {
 
     public static void main(String[] args) {
         try {
-            AstyanaxContext<Keyspace> ctx = new AstyanaxContext.Builder()
-                    .forKeyspace(args[0]+"Keyspace").buildKeyspace(ThriftFamilyFactory.getInstance());
+            AstyanaxContext<Keyspace> ctx = CassandraConnectionUtil.createConnection();
             ctx.start();
             Keyspace keyspace = ctx.getClient();
             keyspace.createKeyspace(ImmutableMap.<String, Object>builder()
@@ -27,8 +26,6 @@ public class KeyspaceProvisioner {
                     .put("strategy_class","SimpleStrategy")
                     .build()
             );
-
-            keyspace.createColumnFamily(CF_STANDARD1, null);
         } catch (Exception e) {
             // some exception occured
             e.printStackTrace();
