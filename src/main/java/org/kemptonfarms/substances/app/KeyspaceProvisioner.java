@@ -2,21 +2,15 @@ package org.kemptonfarms.substances.app;
 
 import com.netflix.astyanax.AstyanaxContext;
 import com.netflix.astyanax.Keyspace;
-import com.netflix.astyanax.model.ColumnFamily;
-import com.netflix.astyanax.serializers.StringSerializer;
-import com.netflix.astyanax.thrift.ThriftFamilyFactory;
 
 import com.google.common.collect.ImmutableMap;
+import org.kemptonfarms.substances.util.CassandraConnection;
 
 public class KeyspaceProvisioner {
 
-    public static ColumnFamily<String, String> CF_STANDARD1 = ColumnFamily
-            .newColumnFamily("Standard", StringSerializer.get(),
-                    StringSerializer.get());
-
     public static void main(String[] args) {
         try {
-            AstyanaxContext<Keyspace> ctx = CassandraConnectionUtil.createConnection();
+            AstyanaxContext<Keyspace> ctx = CassandraConnection.createConnection();
             ctx.start();
             Keyspace keyspace = ctx.getClient();
             keyspace.createKeyspace(ImmutableMap.<String, Object>builder()
