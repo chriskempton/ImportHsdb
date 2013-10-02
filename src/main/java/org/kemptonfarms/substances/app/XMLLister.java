@@ -9,7 +9,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-public class Lister {
+public class XMLLister {
 
     public static void main(String[] args) {
         try {
