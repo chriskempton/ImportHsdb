@@ -58,7 +58,7 @@ public class Lister {
             }
 
         } catch (JAXBException e) {
-            // some exception occured
+            // some exception occurred
             e.printStackTrace();
         }
     }
