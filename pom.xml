@@ -42,6 +42,16 @@
             <artifactId>astyanax-thrift</artifactId>
             <version>1.56.37</version>
         </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.netflix.astyanax</groupId>
+            <artifactId>astyanax-entity-mapper</artifactId>
+            <version>1.56.37</version>
+        </dependency>
     </dependencies>
 
     <build>

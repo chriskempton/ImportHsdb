@@ -42,11 +42,9 @@ public class DataReader {
 
             ArrayList<Substance> hazardousSubstances = hazardousSubstancesDb.getSubstances();
 
-            int i=0;
             for(Substance substance:hazardousSubstances)
             {
-                i++;
-                String k = "substance"+i;
+                String k = substance.getId();
                 OperationResult<ColumnList<String>> result =
                         keyspace.prepareQuery(CF_SUBSTANCES)
                                 .getKey(k)

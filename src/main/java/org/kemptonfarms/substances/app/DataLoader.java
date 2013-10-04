@@ -5,15 +5,16 @@ import com.netflix.astyanax.Keyspace;
 import com.netflix.astyanax.connectionpool.exceptions.BadRequestException;
 import com.netflix.astyanax.model.ColumnFamily;
 import com.netflix.astyanax.serializers.StringSerializer;
-import com.netflix.astyanax.connectionpool.OperationResult;
-import com.netflix.astyanax.MutationBatch;
-import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
+import com.netflix.astyanax.entitystore.EntityManager;
+import com.netflix.astyanax.entitystore.DefaultEntityManager;
 
 import org.kemptonfarms.substances.model.*;
 import org.kemptonfarms.substances.util.CassandraConnection;
 
 import java.util.ArrayList;
 import java.io.File;
+import java.util.Map;
+import java.util.HashMap;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
@@ -50,31 +51,20 @@ public class DataLoader {
             ArrayList<Substance> hazardousSubstances = hazardousSubstancesDb.getSubstances();
 
             int i=0;
+            final Map<String, Substance> entities = new HashMap<String, Substance>();
             for(Substance substance:hazardousSubstances)
             {
                 i++;
-                String k = "substance"+i;
                 System.out.println("Substance #"+i);
                 System.out.println("Name="+substance.getName());
-
-                // TODO Annotate model classes to refer to Cassandra column names
-                // TODO Refactor data loading code below to use the Entity persister
-                MutationBatch m = keyspace.prepareMutationBatch();
-
-                m.withRow(CF_SUBSTANCES, k)
-                        .putColumn("name", substance.getName(), null)
-                        .putColumn("meltingpoint", substance.getMeltingPoint(), null)
-                        .putColumn("boilingpoint", substance.getBoilingPoint(), null)
-                        .putColumn("molecularformula", substance.getMolecularFormula(), null);
-                //TODO Add synonyms and major uses data as sets within a substance entity
-
-                try {
-                    OperationResult<Void> result = m.execute();
-
-                } catch (ConnectionException e) {
-                }
+                entities.put(Integer.toString(i), substance);
             }
-
+            EntityManager<Substance, String> entityPersister = new DefaultEntityManager.Builder<Substance, String>()
+                    .withEntityType(Substance.class)
+                    .withKeyspace(keyspace)
+                    .withColumnFamily(CF_SUBSTANCES)
+                    .build();
+            entityPersister.put(entities.values());
         } catch (Exception e) {
             // some exception occurred
             e.printStackTrace();

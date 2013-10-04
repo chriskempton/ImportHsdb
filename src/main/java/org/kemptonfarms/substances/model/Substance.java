@@ -5,15 +5,37 @@ import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlValue;
 
+@Entity
 @XmlRootElement(namespace = "org.kemptonfarms.substances.model.Hsdb")
 public class Substance {
+    @Id
+    private String id;
+    @Column(name="name")
     private String name;
-    private ArrayList<Synonym> synonyms;
+    @Column(name="molecularformula")
     private String molecularFormula;
+    @Column(name="boilingpoint")
     private String boilingPoint;
+    @Column(name="meltingpoint")
     private String meltingPoint;
+//    @Column(name="synonyms")
+    private ArrayList<Synonym> synonyms;
+//    @Column(name="majoruses")
     private ArrayList<MajorUse> majorUses;
+
+    @XmlElement(name = "CASRegistryNumber")
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @XmlElement(name = "NameOfSubstance")
     public String getName() {
