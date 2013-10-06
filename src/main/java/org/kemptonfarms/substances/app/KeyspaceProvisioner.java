@@ -4,13 +4,13 @@ import com.netflix.astyanax.AstyanaxContext;
 import com.netflix.astyanax.Keyspace;
 
 import com.google.common.collect.ImmutableMap;
-import org.kemptonfarms.substances.util.CassandraConnection;
+import org.kemptonfarms.substances.util.CassandraConnectionUtil;
 
 public class KeyspaceProvisioner {
 
     public static void main(String[] args) {
         try {
-            AstyanaxContext<Keyspace> ctx = CassandraConnection.createConnection();
+            AstyanaxContext<Keyspace> ctx = CassandraConnectionUtil.createConnection();
             ctx.start();
             Keyspace keyspace = ctx.getClient();
             keyspace.createKeyspace(ImmutableMap.<String, Object>builder()
