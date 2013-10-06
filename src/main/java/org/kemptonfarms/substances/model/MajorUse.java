@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlValue;
 @Entity
 @XmlRootElement(namespace = "org.kemptonfarms.substances.model.Substance")
 public class MajorUse {
+    @Column(name="maj")
     private String value;
 
-    @Column(name="maj")
     @XmlValue
     public String getValue() {
         return value;
