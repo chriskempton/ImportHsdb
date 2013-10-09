@@ -1,7 +1,7 @@
 package org.kemptonfarms.substances.app;
 
 import org.kemptonfarms.substances.model.*;
-import org.kemptonfarms.substances.util.HsdbUtil;
+import org.kemptonfarms.substances.util.HsdbDataUtil;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ public class XMLLister {
 
     public static void main(String[] args) {
         int i=0;
-        for(Substance substance: HsdbUtil.getSubstances())
+        for(Substance substance: HsdbDataUtil.getSubstancesFromXml())
         {
             i++;
             System.out.println("Substance #"+i);

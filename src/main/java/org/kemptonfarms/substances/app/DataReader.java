@@ -7,7 +7,7 @@ import com.netflix.astyanax.model.ColumnList;
 
 import org.kemptonfarms.substances.model.*;
 import org.kemptonfarms.substances.util.CassandraConnectionUtil;
-import org.kemptonfarms.substances.util.HsdbUtil;
+import org.kemptonfarms.substances.util.HsdbDataUtil;
 
 public class DataReader {
 
@@ -15,7 +15,7 @@ public class DataReader {
         try {
             Keyspace keyspace = CassandraConnectionUtil.getKeyspace();
 
-            for(Substance substance: HsdbUtil.getSubstances())
+            for(Substance substance: HsdbDataUtil.getSubstancesFromXml())
             {
                 String k = substance.getId();
                 OperationResult<ColumnList<String>> result =

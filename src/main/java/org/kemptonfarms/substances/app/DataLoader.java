@@ -7,7 +7,7 @@ import com.netflix.astyanax.entitystore.DefaultEntityManager;
 import com.netflix.astyanax.model.ColumnFamily;
 import org.kemptonfarms.substances.model.*;
 import org.kemptonfarms.substances.util.CassandraConnectionUtil;
-import org.kemptonfarms.substances.util.HsdbUtil;
+import org.kemptonfarms.substances.util.HsdbDataUtil;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class DataLoader {
 
             int i=0;
             final Map<String, Substance> entities = new HashMap<String, Substance>();
-            for(Substance substance: HsdbUtil.getSubstances())
+            for(Substance substance: HsdbDataUtil.getSubstancesFromXml())
             {
                 i++;
                 System.out.println("Substance #"+i);
