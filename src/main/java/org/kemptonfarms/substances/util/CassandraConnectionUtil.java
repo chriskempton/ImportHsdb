@@ -2,7 +2,6 @@ package org.kemptonfarms.substances.util;
 
 import com.netflix.astyanax.AstyanaxContext;
 import com.netflix.astyanax.Keyspace;
-import com.netflix.astyanax.connectionpool.exceptions.BadRequestException;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 import com.netflix.astyanax.connectionpool.impl.CountingConnectionPoolMonitor;
 import com.netflix.astyanax.connectionpool.impl.ConnectionPoolConfigurationImpl;
@@ -18,7 +17,7 @@ public class CassandraConnectionUtil {
             .newColumnFamily("HazardousSubstances", StringSerializer.get(),
                     StringSerializer.get());
 
-    public static AstyanaxContext createConnection() {
+    private static AstyanaxContext createConnection() {
       AstyanaxContext<Keyspace> context = new AstyanaxContext.Builder()
               .forKeyspace("hazards")
               .withAstyanaxConfiguration(new AstyanaxConfigurationImpl()
