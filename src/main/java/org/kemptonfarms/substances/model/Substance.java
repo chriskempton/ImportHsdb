@@ -1,7 +1,7 @@
 package org.kemptonfarms.substances.model;
 
 import java.lang.String;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
@@ -23,10 +23,10 @@ public class Substance {
     private String boilingPoint;
     @Column(name="meltingpoint")
     private String meltingPoint;
-//    @Column(name="synonyms")
-    private ArrayList<Synonym> synonyms;
-//    @Column(name="majoruses")
-    private ArrayList<MajorUse> majorUses;
+    @Column(name="synonyms")
+    private List<String> synonyms;
+    @Column(name="majoruses")
+    private List<String> majorUses;
 
     @XmlElement(name = "CASRegistryNumber")
     public String getId() {
@@ -44,15 +44,6 @@ public class Substance {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @XmlElement(name = "sy")
-    public ArrayList<Synonym> getSynonyms() {
-        return synonyms;
-    }
-
-    public void setSynonyms(ArrayList<Synonym> synonyms) {
-        this.synonyms = synonyms;
     }
 
     @XmlElement(name = "mf")
@@ -82,12 +73,21 @@ public class Substance {
         this.meltingPoint = meltingPoint;
     }
 
+    @XmlElement(name = "sy")
+    public List<String> getSynonyms() {
+        return synonyms;
+    }
+
+    public void setSynonyms(List<String> synonyms) {
+        this.synonyms = synonyms;
+    }
+
     @XmlElement(name = "use")
-    public ArrayList<MajorUse> getMajorUses() {
+    public List<String> getMajorUses() {
         return majorUses;
     }
 
-    public void setMajorUses(ArrayList<MajorUse> majorUses) {
+    public void setMajorUses(List<String> majorUses) {
         this.majorUses = majorUses;
     }
 }

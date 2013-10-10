@@ -3,7 +3,7 @@ package org.kemptonfarms.substances.app;
 import org.kemptonfarms.substances.model.*;
 import org.kemptonfarms.substances.util.HsdbDataUtil;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class XMLLister {
 
@@ -21,20 +21,20 @@ public class XMLLister {
             System.out.println("Synonyms...");
 
             int synCount = 1;
-            ArrayList<Synonym> synonyms = substance.getSynonyms();
-            for(Synonym synonym:synonyms)
+            List<String> synonyms = substance.getSynonyms();
+            for(String synonym:synonyms)
             {
-                System.out.println(synCount+". "+synonym.getValue());
+                System.out.println(synCount+". "+synonym);
                 synCount++;
             }
 
             System.out.println("Major uses...");
 
             int useCount = 1;
-            ArrayList<MajorUse> uses = substance.getMajorUses();
-            for(MajorUse use:uses)
+            List<String> uses = substance.getMajorUses();
+            for(String use:uses)
             {
-                System.out.println(useCount+". "+use.getValue());
+                System.out.println(useCount+". "+use);
                 useCount++;
             }
         }
