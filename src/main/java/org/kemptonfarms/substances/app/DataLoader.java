@@ -14,6 +14,9 @@ import java.util.HashMap;
 
 public class DataLoader {
 
+    /*
+        see HsdbDataUtilTest.setUp();
+     */
     public static void main(String[] args) {
         try {
             Keyspace keyspace = CassandraConnectionUtil.getKeyspace();
