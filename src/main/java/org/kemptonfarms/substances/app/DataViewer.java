@@ -1,15 +1,18 @@
 package org.kemptonfarms.substances.app;
 
 import org.kemptonfarms.substances.model.*;
-import org.kemptonfarms.substances.util.HsdbDataUtil;
+import org.kemptonfarms.substances.util.IHsdbDataUtil;
+import org.kemptonfarms.substances.util.XmlHsdbDataUtil;
 
 import java.util.List;
 
-public class XMLLister {
+public class DataViewer {
 
     public static void main(String[] args) {
         int i=0;
-        for(Substance substance: HsdbDataUtil.getSubstancesFromXml())
+        IHsdbDataUtil inputDataUtil = new XmlHsdbDataUtil();
+
+        for(Substance substance: inputDataUtil.getSubstances())
         {
             i++;
             System.out.println("Substance #"+i);

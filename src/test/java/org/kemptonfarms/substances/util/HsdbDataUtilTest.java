@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.kemptonfarms.substances.app.DataLoader;
 import org.kemptonfarms.substances.model.Substance;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class HsdbDataUtilTest {
 
@@ -16,24 +16,27 @@ public class HsdbDataUtilTest {
 
     @Test
     public void testGetSubstancesFromXml() throws Exception {
-        ArrayList<Substance> substances = HsdbDataUtil.getSubstancesFromXml();
+        IHsdbDataUtil hsdbDataUtil = new XmlHsdbDataUtil();
+        List<Substance> substances = hsdbDataUtil.getSubstances();
         assert(substances.size() == 117);
         verifySubstances(substances);
     }
 
     @Test
     public void testGetSubstancesFromCassandra() throws Exception {
-        ArrayList<Substance> substances = HsdbDataUtil.getSubstancesFromCassandra();
+        IHsdbDataUtil hsdbDataUtil = new AstyanaxHsdbDataUtil();
+        List<Substance> substances = hsdbDataUtil.getSubstances();
         assert(substances.size() == 117);
         verifySubstances(substances);
     }
 
     @Test
     public void testGetSubstanceFromCassandra() throws Exception {
-        verifySubstance(HsdbDataUtil.getSubstanceFromCassandra("108-87-2"));
+        IHsdbDataUtil hsdbDataUtil = new AstyanaxHsdbDataUtil();
+        verifySubstance(hsdbDataUtil.getSubstance("108-87-2"));
     }
 
-    private void verifySubstances(ArrayList<Substance> substances) {
+    private void verifySubstances(List<Substance> substances) {
         for(Substance substance:substances) {
             verifySubstance(substance);
         }
