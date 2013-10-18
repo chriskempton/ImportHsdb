@@ -9,6 +9,7 @@ import java.util.List;
 
 public class HsdbDataUtilTest {
 
+    //TODO Create separate test classes for each implementation of IHsdbDataUtil interface
     @Before
     public void setUp() {
         DataLoader.main(new String[0]);
