@@ -1,8 +1,7 @@
 package org.kemptonfarms.substances.app;
 
 import org.kemptonfarms.substances.model.*;
-import org.kemptonfarms.substances.util.IHsdbDataUtil;
-import org.kemptonfarms.substances.util.XmlHsdbDataUtil;
+import org.kemptonfarms.substances.util.*;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class DataViewer {
 
     public static void main(String[] args) {
         int i=0;
-        IHsdbDataUtil inputDataUtil = new XmlHsdbDataUtil();
+        IHsdbDataUtil inputDataUtil = new AstyanaxHsdbDataUtil();
 
         for(Substance substance: inputDataUtil.getSubstances())
         {
