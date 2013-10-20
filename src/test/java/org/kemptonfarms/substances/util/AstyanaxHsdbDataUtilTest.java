@@ -32,9 +32,4 @@ public class AstyanaxHsdbDataUtilTest {
     public void testPutSubstances() throws Exception {
         // TODO Implement test
     }
-
-    @Test
-    public void testPutSubstance() throws Exception {
-        // TODO Implement test
-    }
 }

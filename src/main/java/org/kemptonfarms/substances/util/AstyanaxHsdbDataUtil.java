@@ -91,11 +91,6 @@ public class AstyanaxHsdbDataUtil implements IHsdbDataUtil {
         }
     }
 
-    @Override
-    public void putSubstance(Substance substance) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
     private static final ColumnFamily<String, String> CF_SUBSTANCES = ColumnFamily
             .newColumnFamily("HazardousSubstances", StringSerializer.get(),
                     StringSerializer.get());

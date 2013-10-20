@@ -9,6 +9,4 @@ public interface IHsdbDataUtil {
     public List<Substance> getSubstances();
 
     public void putSubstances(List<Substance> substances) throws Exception;
-
-    public void putSubstance(Substance substance) throws Exception;
 }

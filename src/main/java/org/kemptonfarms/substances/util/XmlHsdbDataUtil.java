@@ -54,9 +54,4 @@ public class XmlHsdbDataUtil implements IHsdbDataUtil {
     public void putSubstances(List<Substance> substances) throws Exception {
         throw new Exception("Substances can't be put into XML");
     }
-
-    @Override
-    public void putSubstance(Substance substance) throws Exception {
-        throw new Exception("Substances can't be put into XML");
-    }
 }
