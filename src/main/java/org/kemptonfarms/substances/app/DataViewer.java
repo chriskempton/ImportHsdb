@@ -9,7 +9,7 @@ public class DataViewer {
 
     public static void main(String[] args) {
         int i=0;
-        IHsdbDataUtil inputDataUtil = new AstyanaxHsdbDataUtil();
+        IHsdbDataUtil inputDataUtil = CassandraHsdbDataUtilFactory.getInstance();
 
         for(Substance substance: inputDataUtil.getSubstances())
         {

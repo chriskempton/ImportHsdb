@@ -9,7 +9,7 @@ public class DataLoader {
      */
     public static void main(String[] args) {
         try {
-            IHsdbDataUtil outputDataUtil = new AstyanaxHsdbDataUtil();
+            IHsdbDataUtil outputDataUtil = CassandraHsdbDataUtilFactory.getInstance();
             IHsdbDataUtil inputDataUtil = new XmlHsdbDataUtil();
 
             outputDataUtil.putSubstances(inputDataUtil.getSubstances());
